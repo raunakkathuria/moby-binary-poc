@@ -1,0 +1,42 @@
+extends views/layout.pug
+
+block content
+    div(class="pure-g")
+        div(class="pure-u-1-2")
+            button(class="pure-button pure-button-primary" id="authorize_connection") Authorize
+
+    div(class="pure-g")
+        p
+
+    div(class="pure-g chain_with_authorize")
+        div(class="pure-u-1-2")
+            button(class="pure-button pure-button-primary" id="get_settings") Get settings
+        div(class="pure-u-1-2")
+            button(class="pure-button pure-button-primary" id="get_balance") Get balance
+
+    div(class="pure-g")
+        p
+
+    div(class="pure-g")
+        div(class="pure-u-1-1")
+            button(class="pure-button pure-button-primary" id="payment_agent_withdraw") Payment agent withdraw
+
+    div(class="pure-g")
+        p
+
+    div(class="pure-g")
+        div(class="pure-u-1-1")
+            p#paymentagent_message Logged in as authorized payment agent.
+            button(class="pure-button pure-button-primary" id="payment_agent_transfer") Payment agent transfer
+
+    div(class="pure-g")
+        p
+        div(class="pure-u-1")
+            hr
+            h3 Console output
+
+    div(class="pure-g")
+        div(class="pure-u-1-2")
+            textarea(class="pure-input-1-2" id="request_area_output" placeholder="Request display area" rows=10)
+        div(class="pure-u-1-2")
+            textarea(class="pure-input-1-2" id="response_area_output" placeholder="Response display area" rows=10)
