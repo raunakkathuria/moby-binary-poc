@@ -12,27 +12,29 @@
  * ReconnectSocket.clear() // clear buffer if you want to instantiate new connection
  */
 
-let ReconnectSocket = (function () {
+let ReconnectSocket = (function() {
     'use strict';
 
     let socket,
-        socketUrl = getCookie("socket_url"),
+        socketHost = getCookie("connection_host"),
+        socketAppId = getCookie("app_id"),
         bufferedSends = [],
         isJSON = 1; // flag to indicate whether you send JSON message
+    let socketUrl = `wss://${socketHost}/websockets/v3?l=en&app_id=${socketAppId}`;
 
-    let status = function () {
+    let status = function() {
         return socket && socket.readyState;
     };
 
-    let isReady = function () {
+    let isReady = function() {
         return socket && socket.readyState === 1;
     };
 
-    let isClose = function () {
+    let isClose = function() {
         return !socket || socket.readyState === 3;
     };
 
-    let sendBufferedSends = function () {
+    let sendBufferedSends = function() {
         while (bufferedSends.length > 0) {
             if (isJSON) {
                 socket.send(JSON.stringify(bufferedSends.shift()));
@@ -42,31 +44,30 @@ let ReconnectSocket = (function () {
         }
     };
 
-    let init = function () {
-        if(isClose()){
+    let init = function() {
+        if (isClose()) {
             socket = new WebSocket(socketUrl);
         }
 
-        socket.onopen = function (){
+        socket.onopen = function() {
             sendBufferedSends();
         };
 
         // implement your server response handling here
-        socket.onmessage = function (msg){
+        socket.onmessage = function(msg) {
             let result = JSON.parse(msg.data);
             console.log(result);
             let responseTextarea = document.querySelector("#response_area_output");
             responseTextarea.value = JSON.stringify(result, null, 2);
             if (result["msg_type"] === "authorize") {
-                document.querySelector('.chain_with_authorize').style.display="block";
+                document.querySelectorAll('.chain_with_authorize').forEach(elm => elm.style.display = "block");
             }
 
             if (result["msg_type"] === "get_settings") {
                 if (result["get_settings"]["is_authenticated_payment_agent"]) {
-                    document.querySelector('#payment_agent_transfer').style.display="block";
-                    document.querySelector('#paymentagent_message').style.display="block";
+                    document.querySelectorAll('.paymentagent_display').forEach(elm => elm.style.display = "block");
                 } else {
-                    document.querySelector('#payment_agent_withdraw').style.display="block";
+                    document.querySelectorAll('.client_display').forEach(elm => elm.style.display = "block");
                 }
                 alert("Login or create a new account on mobytrader based on details you get from get_settings api call.");
             }
@@ -80,11 +81,11 @@ let ReconnectSocket = (function () {
             }
         };
 
-        socket.onclose = function (e) {
+        socket.onclose = function(e) {
             console.log("socket closed", e);
         };
 
-        socket.onerror = function (error) {
+        socket.onerror = function(error) {
             console.log('socket error', error);
         };
     };
@@ -105,14 +106,14 @@ let ReconnectSocket = (function () {
         }
     };
 
-    let close = function () {
+    let close = function() {
         bufferedSends = [];
         if (socket) {
             socket.close();
         }
     };
 
-    let clear = function(){
+    let clear = function() {
         bufferedSends = [];
     };
 

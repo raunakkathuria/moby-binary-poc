@@ -21,15 +21,18 @@ block content
 
     div(class="pure-g")
         div(class="pure-u-1-1")
-            button(class="pure-button pure-button-primary" id="payment_agent_withdraw") Payment agent withdraw
+            input(type="text" id="paymentagent_loginid" placeholder="Enter payment agent loginid, for example, CR900000002" size=40 class="client_display")
+            p
+            button(class="pure-button pure-button-primary client_display" id="payment_agent_withdraw") Payment agent withdraw
 
     div(class="pure-g")
         p
 
     div(class="pure-g")
         div(class="pure-u-1-1")
-            p#paymentagent_message Logged in as authorized payment agent.
-            button(class="pure-button pure-button-primary" id="payment_agent_transfer") Payment agent transfer
+            input(type="text" id="client_loginid" placeholder="Enter client loginid id, for example, CR900000001" size=40 class="paymentagent_display")
+            p.paymentagent_display Logged in as authorized payment agent.
+            button(class="pure-button pure-button-primary paymentagent_display" id="payment_agent_transfer") Payment agent transfer
 
     div(class="pure-g")
         p

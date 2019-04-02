@@ -18,7 +18,7 @@ npm install
 ### Run
 
 ```bash
-SOCKET_URL=<socket_url> node index.js
+CONNECTION_HOST=<connection_host> APP_ID=<app_id> node index.js
 ```
 
 ### Usage

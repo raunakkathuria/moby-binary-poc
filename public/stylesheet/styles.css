@@ -200,7 +200,7 @@ textarea {
     width: 90%;
 }
 
-.chain_with_authorize, #payment_agent_withdraw, #payment_agent_transfer, #paymentagent_message {
+.chain_with_authorize, .client_display, .paymentagent_display {
     display: none;
 }
 
