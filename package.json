@@ -14,5 +14,7 @@
     "point-of-view": "^3.1.1",
     "pug": "^2.0.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "js-beautify": "^1.9.1"
+  }
 }
