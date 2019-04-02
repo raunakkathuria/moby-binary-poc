@@ -44,18 +44,18 @@ CONNECTION_HOST=<connection_host> APP_ID=<app_id> node index.js
 
     then please authorize again.
 
-- Click on `Get balance` to get the balance for the current user.
+- Click on `Get balance` to get the balance for the current user. Binary.com API call: <https://developers.binary.com/api/#balance>.
 
-- Click on `Get settings` to get current account details. 
+- Click on `Get settings` to get current account details. Binary.com API call:  <https://developers.binary.com/api/#get_settings>.
 
 - Based on the get_settings response you will be given an option to perform payment agent transfer to the client, If you are authorized payment agent.
 
 - For payment agent only
 
 
-  - Click on `Payment agent transfer` if you have logged in as payment agent and on success, Mobytrader will add a hook to trigger their withdraw API call to withdraw money from their client account.
+    - Click on `Payment agent transfer`, to transfer to client, if you have logged in as payment agent and on success, Mobytrader will add a hook to trigger their withdraw API call to withdraw money from their client account. Binary.com API call: <https://developers.binary.com/api/#paymentagent_transfer>.
 
 - For normal client
 
 
-  - Click on `Payment agent withdraw` if you have logged in as a normal client then you can transfer to payment agent and on success, mobytrader will add a hook to trigger their deposit API call to transfer money to their client account.
+    - Click on `Payment agent withdraw`, to withdraw to payment agent, if you have logged in as a normal client and on success, mobytrader will add a hook to trigger their deposit API call to transfer money to their client account. Binary.com API call: <https://developers.binary.com/api/#paymentagent_withdraw>.
