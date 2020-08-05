@@ -9,7 +9,7 @@
   "author": "Raunak",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^2.1.0",
+    "fastify": "^2.15.1",
     "fastify-cookie": "^3.0.2",
     "point-of-view": "^3.1.1",
     "pug": "^2.0.3"
